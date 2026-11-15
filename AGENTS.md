@@ -8,7 +8,7 @@ Read this file and `Docs/CODING_STANDARDS.md` and `Docs/ARCHITECTURE.md` at the 
 - **Engine version:** Unreal Engine **5.8.4** (hotfix, 2026-10-20). Never assume APIs; names differ between engine versions. Do not open the project in 5.9 Preview.
 - **Primary module:** `GodDomain` (project `Game/GodDomain.uproject`; class prefix `GodDomain`, e.g. `AGodDomainCharacter`).
 - **Project origin:** UE 5.8 **Third Person template**, kept deliberately as a starting point. `Source/GodDomain/Variant_Combat|Variant_Platforming|Variant_SideScrolling/` is template scaffolding — do not build game systems inside it; new code goes in the folders listed in `Docs/ARCHITECTURE.md`.
-- **Art tool:** Blender **5.3.0**. The MCP add-on requires Blender 5.1+.
+- **Art tool:** Blender **5.3.0**. The MCP add-on requires Blender 5.1+. Installed as the **Steam** build at `C:\Program Files (x86)\Steam\steamapps\common\Blender\blender.exe` — not on `PATH` and not under `C:\Program Files\Blender Foundation`, so headless runs need the full path. Art direction: `Docs/ART_DIRECTION.md`; kit grid and textures: `Docs/ART_PIPELINE.md`.
 - **Platform / IDE:** Windows 64-bit + Visual Studio 2022.
 - **Agent tooling:** `.mcp.json` in the repo root wires the agent to the Unreal Editor (Unreal MCP, HTTP) and Blender (Blender Lab server, stdio). Setup, limits and safety: `Docs/MCP_SETUP.md`.
 - **Build command:** `"<UE>/Engine/Build/BatchFiles/Build.bat" GodDomainEditor Win64 Development "<repo>/Game/GodDomain.uproject" -WaitMutex`. On this machine `<UE>` = `C:\Program Files\Epic Games\UE_5.8`.

@@ -3,10 +3,10 @@
 Each milestone has **exit criteria**. Do not start the next milestone until they are met.
 
 ## M0 — Foundations
-- [ ] Engine version chosen and recorded in `AGENTS.md`
-- [ ] UE C++ project created in `Game/`, builds clean
-- [ ] Git + LFS configured, first commit pushed
-- [ ] Rules and docs reviewed and confirmed (`DECISIONS.md` updated)
+- [X] Engine version chosen and recorded in `AGENTS.md`
+- [X] UE C++ project created in `Game/`, builds clean
+- [X] Git + LFS configured, first commit pushed
+- [X] Rules and docs reviewed and confirmed (`DECISIONS.md` updated)
 
 ## M1 — Combat grey-box
 - [ ] Third-person character with movement, camera, dodge
@@ -22,6 +22,7 @@ Each milestone has **exit criteria**. Do not start the next milestone until they
 
 ## M3 — Starter village vertical slice
 - [ ] Village layout (grey-box then art pass)
+- [~] Art track (`Docs/ART_DIRECTION.md`, `Docs/ART_PIPELINE.md`): material sheets **generated**; facade, street, civic and landscape kits pending
 - [ ] Class trainer, quest board, vendor
 - [ ] Two to three monster ranks, one mini-boss
 - [ ] Promotion quest end to end

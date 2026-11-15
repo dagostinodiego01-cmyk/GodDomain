@@ -5,11 +5,11 @@
 - Prefix all project types with `GodDomain`: `AGodDomainCharacter`, `UGodDomainAttributeSet`, `FGodDomainClassRow`.
 - Booleans: `bIsAlive`. Functions: PascalCase verbs. Variables: PascalCase. Parameters/locals: PascalCase too (Unreal style).
 - Files match the type name without the prefix letter, e.g. `GodDomainCharacter.h/.cpp`.
-- Asset prefixes: `BP_`, `SM_`, `SK_`, `M_`, `MI_`, `T_`, `WBP_`, `DT_`, `DA_`, `GA_` (gameplay ability), `GE_` (gameplay effect).
+- Asset prefixes: `BP_`, `SM_`, `SK_`, `M_`, `MI_`, `T_`, `WBP_`, `DT_`, `DA_`, `GA_` (gameplay ability), `GE_` (gameplay effect), `LVL_` (levels).
 
 ## Headers and includes
 - Include what you use; forward-declare in headers where possible.
-- `#include "GDCharacter.generated.h"` must be the **last** include in a header.
+- `#include "GodDomainCharacter.generated.h"` must be the **last** include in a header.
 - Avoid including heavy headers (e.g. `Engine.h`) in headers.
 
 ## UObject and memory

@@ -33,12 +33,14 @@ Start small: a single **starter village** with one playable class, a combat syst
 │   ├── ARCHITECTURE.md  ← how the systems fit together
 │   ├── CODING_STANDARDS.md
 │   ├── DESIGN.md        ← pillars, scope, IP rules, open questions
+│   ├── ART_DIRECTION.md ← the village look: palette, materials, districts
+│   ├── ART_PIPELINE.md  ← Blender kit grid, textures, export/import
 │   ├── ROADMAP.md       ← milestones and exit criteria
 │   └── DECISIONS.md     ← log of technical decisions
 ├── Game/                ← the Unreal Engine project (.uproject lives here)
 ├── Art/
 │   ├── Blender/         ← .blend source files
-│   ├── Exports/         ← FBX/glTF ready for UE import
+│   ├── Exports/         ← FBX/glTF for UE import, generated texture sheets
 │   └── Reference/       ← reference images, mood boards
 ├── Data/                ← CSV/JSON source of truth for balance data
 └── Tools/               ← helper scripts (Blender exporters, validators)

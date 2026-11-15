@@ -99,6 +99,9 @@ Do not design for stage 4 yet.
 
 ## Art pipeline (Blender → Unreal)
 
+Look: `ART_DIRECTION.md`. Kit grid, texture specs, phases: `ART_PIPELINE.md`.
+
+0. Base materials are **generated, not painted**: `python Tools/Blender/generate_textures.py` writes tileable sheets to `Art/Exports/Textures/` from `Tools/Blender/palette.json`.
 1. Model and rig in `Art/Blender/`. One `.blend` per asset or small kit.
 2. Export FBX/glTF to `Art/Exports/` using the agreed scale (1 Blender unit = 1 m; UE uses cm, so export with the correct unit scale).
 3. Import into UE under a matching `Content/` folder; naming prefixes: `SM_` static mesh, `SK_` skeletal mesh, `M_` / `MI_` material, `T_` texture, `ABP_` anim blueprint, `AM_` montage.

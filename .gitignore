@@ -32,6 +32,11 @@ Archive/
 *.blend@
 __pycache__/
 
+# ---- Generated art ----
+# Reproducible from Tools/Blender/palette.json; regenerate instead of pulling binaries:
+#   python Tools/Blender/generate_textures.py
+Art/Exports/Textures/
+
 # ---- OS / editor ----
 .DS_Store
 Thumbs.db

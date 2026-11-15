@@ -33,7 +33,7 @@ Fair to adapt as **general ideas**: tiered progression, promotion quests, shelte
 
 ## Open questions
 - Final game name and setting hook (gods and domains?)
-- Art direction (stylised / low-poly vs. painterly)
+- ~~Art direction (stylised / low-poly vs. painterly)~~ → provisionally **painterly late-medieval autumn town**, see `ART_DIRECTION.md` (needs sign-off)
 - Which single class to prototype first (recommendation: a melee class, as it needs the most combat polish)
 - Character creation scope and customisation depth
 - Monetisation and licensing, if any

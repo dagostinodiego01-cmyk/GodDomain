@@ -1,0 +1,82 @@
+{
+  "$comment": "Single source of truth for the village palette and the procedural material recipes. Read by Tools/Blender/generate_textures.py and mirrored in Docs/ART_DIRECTION.md (this file wins on disagreement). Colours were sampled by eye from the owner's concept reference on 2026-11-15.",
+  "version": 1,
+  "units": {
+    "texture_tiling_m": 2.0,
+    "default_size": 1024
+  },
+  "generated": {
+    "T_Plaster_Warm": {
+      "pattern": "plaster",
+      "base": "#c9a87c",
+      "roughness": 0.85,
+      "size": 1024,
+      "tiling_m": 2.0,
+      "note": "Warm ochre infill panels. Trade district and townhouses."
+    },
+    "T_Plaster_Cream": {
+      "pattern": "plaster",
+      "base": "#e2d5bc",
+      "roughness": 0.86,
+      "size": 1024,
+      "tiling_m": 2.0,
+      "note": "Lighter infill. Civic walls and upper storeys."
+    },
+    "T_Timber_Oak": {
+      "pattern": "timber",
+      "base": "#4b3626",
+      "roughness": 0.7,
+      "size": 1024,
+      "tiling_m": 2.0,
+      "note": "Beams, posts, braces, planks. Grain runs along U."
+    },
+    "T_Roof_Tile": {
+      "pattern": "roof_tile",
+      "base": "#94412f",
+      "roughness": 0.62,
+      "size": 1024,
+      "tiling_m": 2.0,
+      "note": "Clay tile courses. The town's most repeated surface."
+    },
+    "T_Cobble": {
+      "pattern": "cobble",
+      "base": "#8b8577",
+      "mortar": "#6e6a5e",
+      "roughness": 0.8,
+      "size": 1024,
+      "tiling_m": 2.0,
+      "note": "Plaza and street paving."
+    },
+    "T_Stone_Dressed": {
+      "pattern": "stone_block",
+      "base": "#b7b1a3",
+      "mortar": "#8f8a7d",
+      "roughness": 0.78,
+      "size": 1024,
+      "tiling_m": 2.0,
+      "note": "Ashlar. Cathedral, town hall, plinths, kerbs."
+    }
+  },
+  "swatches": {
+    "plaster_warm": "#c9a87c",
+    "plaster_cream": "#e2d5bc",
+    "timber_oak": "#4b3626",
+    "timber_smoked": "#2e2319",
+    "roof_tile": "#94412f",
+    "roof_tile_old": "#6e4a46",
+    "cobble": "#8b8577",
+    "stone_dressed": "#b7b1a3",
+    "iron": "#3a3a3c",
+    "banner_red": "#a62b2b",
+    "banner_gold": "#c9a227",
+    "canvas_cream": "#cfc0a4",
+    "canvas_red": "#a64b3c",
+    "glass_lit": "#f2b45e",
+    "foliage_rust": "#b2452a",
+    "foliage_amber": "#d2803a",
+    "foliage_deep": "#6e2b1d",
+    "kerb_moss": "#6e7a4e",
+    "sky": "#74a9de",
+    "sun": "#ffd9a8"
+  }
+}
