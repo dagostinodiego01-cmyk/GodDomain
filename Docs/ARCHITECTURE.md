@@ -1,11 +1,13 @@
 # Architecture
 
-Status: **Proposed** — confirm in `DECISIONS.md` before building on it.
+Status: **Hybrid source-of-truth accepted** (see ADR-004). Other items remain *Proposed* in `DECISIONS.md`.
+
+Engine: **Unreal Engine 5.8**.
 
 ## Principles
 
 1. **Multiplayer-ready, single-player first.** Write server-authoritative code from the start, even while testing offline. Retrofitting networking later is a rewrite.
-2. **C++ first, data-driven.** Logic in C++, numbers in data (see below).
+2. **C++ first, data-driven.** Logic in C++, tuning in data, visual/spatial content in UE assets (see *Source of truth*).
 3. **GAS for everything stat-like.** Attributes, abilities, effects, cooldowns, tags.
 4. **Small modules, clear ownership.** One system, one folder, minimal cross-dependencies.
 
@@ -13,6 +15,7 @@ Status: **Proposed** — confirm in `DECISIONS.md` before building on it.
 
 - Gameplay Abilities (GAS) — also add `GameplayAbilities`, `GameplayTags`, `GameplayTasks` to `GDomain.Build.cs`
 - Enhanced Input
+- Unreal MCP (Epic, experimental in 5.8) plus the toolset plugin(s) it needs — **editor/dev only**, see `MCP_SETUP.md`
 
 (Enable only what is needed. Record every addition in `DECISIONS.md`.)
 
@@ -30,21 +33,40 @@ UI/          HUD, widgets (view code only, no game rules)
 Data/        row structs and data asset types
 ```
 
-## Data-driven design
+## Source of truth (hybrid)
 
-**Source of truth is text, not Editor assets**, so it can be reviewed, diffed and edited by an AI agent.
+Agents can work in the editor through MCP, so UE assets are first-class. But binary assets cannot be diffed or reviewed, so we split by content type:
 
-- Balance data lives in `Data/*.csv` (classes, skills, items, monsters, XP curves).
-- In the Editor, import CSVs into `UDataTable` assets whose row structs derive from `FTableRowBase`.
-- Content designers/agents change the CSV; a developer re-imports in the Editor.
-- Complex per-entity assets (e.g. a class) may use `UPrimaryDataAsset`, but keep the numbers in CSV where possible.
+| Content | Source of truth | Why |
+|---|---|---|
+| Gameplay logic, systems, networking | **C++** | Reviewable, diffable |
+| Gameplay tags, project config | **Text** (`Config/*.ini`) | Diffable; changes need approval |
+| Tabular balance data (XP curve, prices, monster stats, drop tables) | **`Data/*.csv`** → imported `UDataTable` | Easy to diff and rebalance in bulk |
+| Class definitions, skill definitions | **UE data assets** (`UPrimaryDataAsset`) | Edited via MCP, typed references to abilities/effects |
+| Abilities and effects (`GA_*`, `GE_*`) | **UE assets** (thin; logic in C++ base classes) | Standard GAS workflow |
+| Levels, materials, animation, montages, VFX, UI layouts | **UE assets** | Inherently visual/spatial |
+| Meshes, rigs, source animation | **Blender `.blend`** in `Art/Blender/` → exports in `Art/Exports/` | DCC source files |
 
-Initial tables (all placeholders): `Classes.csv`, `ClassTiers.csv`, `Skills.csv`, `Monsters.csv`, `Items.csv`, `XPCurve.csv`.
+Rules of thumb:
+- If it is a **number that will be tuned in bulk**, it goes in a CSV.
+- If it is **structure or references** (what a class unlocks, which ability a skill grants), it is a data asset.
+- If it is **logic**, it is C++.
+- Any asset an agent changes must be **read back and summarised** by the agent, then committed in a small checkpoint commit (see `AGENTS.md`).
+
+Initial tables (placeholders): `ClassTiers.csv`, `Skills.csv`, `Monsters.csv`, `Items.csv`, `XPCurve.csv`.
+
+## AI agents and MCP
+
+- Agents connect to the **Unreal Editor** and **Blender** over local MCP servers. Details, setup and safety in `MCP_SETUP.md`.
+- MCP is for **editor and content work** (assets, levels, materials, imports). **C++ is still written and compiled through the normal file + build workflow.**
+- Prefer structured MCP tools over arbitrary Python execution. Raw Python in the editor is allowed only when stated to the user first.
+- MCP servers are local-only and **dev-only**; they must never ship in a packaged build.
+- Because the tooling is experimental, nothing in the game may *depend* on it at runtime, and everything it produces must remain editable by hand.
 
 ## Class system model (draft)
 
 ```
-ClassDefinition  (id, display name, role, base attribute growth)
+ClassDefinition  (UPrimaryDataAsset: id, display name, role; attribute growth curves from CSV)
   └─ PromotionNode (from class, to class, required level, quest id)
        └─ SkillUnlock (class, skill id, required level/tier)
 ```
