@@ -23,7 +23,7 @@ Project file: `Game/GodDomain.uproject`, single runtime module `GodDomain`. Crea
 
 ## Source layout (`Game/Source/GodDomain/`)
 
-None of these folders exist yet — create each one with the first system that needs it.
+`Core/` exists as of X-01 (log categories, game mode, game state, player state, player controller) and `Abilities/` as of M1-03 (attribute set, ability system bootstrap). Create each remaining folder with the first system that needs it; see ADR-022.
 
 ```
 Core/        game mode, game state, player state, controller, log categories
@@ -46,6 +46,10 @@ Agents can work in the editor through MCP, so UE assets are first-class. But bin
 | Gameplay logic, systems, networking | **C++** | Reviewable, diffable |
 | Gameplay tags, project config | **Text** (`Config/*.ini`) | Diffable; changes need approval |
 | Tabular balance data (XP curve, prices, monster stats, drop tables) | **`Data/*.csv`** → imported `UDataTable` | Easy to diff and rebalance in bulk |
+| City layout (wall, gates, streets, blocks, landmark footprints, anchors) | **`Data/Layout/city_layout.csv`** → generated `Docs/Layout/CityPlan.svg` | Diffable, and `Tools/Layout/build_city_plan.py` checks it against the wall and the streets; the level is built *from* it, never the reverse |
+| The layout audit | `Tools/Editor/compare_level_to_plan.py` | Measures every greybox actor's world bounds through MCP and compares them with `Data/Layout/city_layout.csv`; writes `Docs/Layout/Level_vs_Plan.md` (plan vs built vs delta, including the block array — count, per-row uniformity, party gap, pad clearance, frontage, pitch) and `Level_vs_Plan.svg` (both geometries on one 30 m grid, numbered pins with a measured legend). Run it after any setout rebuild |
+| The evidence frames | `Tools/Editor/shoot_views.py` | Re-shoots arrival, gate, river, town and plan-grid frames from the live V3 level through `CaptureViewport`, and with `--pie` one frame from Play-In-Editor. Poses are in metres; the script converts to the editor's centimetres |
+| The blockout level | `Game/Content/StarterVillage/LVL_StarterVillage_V3.umap` | Generated from the CSV by `Tools/Editor/build_level_v3.py` through the editor's MCP server — the editor authors the binary, the script never writes it. `DefaultEngine.ini` names it as both the game default map and the editor startup map. Its greybox meshes (`SM_Ground`, `SM_Stone`, `SM_Water`…) and their material instances live in `Content/StarterVillage/Greybox/{Meshes,Materials}` — one colour per category, so the setout reads in-engine |
 | Class definitions, skill definitions | **UE data assets** (`UPrimaryDataAsset`) | Edited via MCP, typed references to abilities/effects |
 | Abilities and effects (`GA_*`, `GE_*`) | **UE assets** (thin; logic in C++ base classes) | Standard GAS workflow |
 | Levels, materials, animation, montages, VFX, UI layouts | **UE assets** | Inherently visual/spatial |
