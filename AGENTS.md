@@ -5,10 +5,13 @@ Read this file and `Docs/CODING_STANDARDS.md` and `Docs/ARCHITECTURE.md` at the 
 ## Project facts
 
 - **Project:** GD (working title), Unreal Engine 5 + C++, multiplayer-ready action RPG.
-- **Engine version:** `TODO: fill in, e.g. 5.x.x` — never assume; API names differ between versions.
-- **Primary module:** `GDomain` (class prefix `GD`, e.g. `AGDCharacter`).
-- **Platform / IDE:** `TODO: e.g. Windows + Visual Studio 2022`.
-- **Build command:** `TODO: e.g. "<UE>/Engine/Build/BatchFiles/Build.bat" GDomainEditor Win64 Development "<repo>/Game/GDomain.uproject"`.
+- **Engine version:** Unreal Engine **5.8.4** (hotfix, 2026-10-20). Never assume APIs; names differ between engine versions. Do not open the project in 5.9 Preview.
+- **Primary module:** `GodDomain` (project `Game/GodDomain.uproject`; class prefix `GodDomain`, e.g. `AGodDomainCharacter`).
+- **Project origin:** UE 5.8 **Third Person template**, kept deliberately as a starting point. `Source/GodDomain/Variant_Combat|Variant_Platforming|Variant_SideScrolling/` is template scaffolding — do not build game systems inside it; new code goes in the folders listed in `Docs/ARCHITECTURE.md`.
+- **Art tool:** Blender **5.3.0**. The MCP add-on requires Blender 5.1+.
+- **Platform / IDE:** Windows 64-bit + Visual Studio 2022.
+- **Agent tooling:** `.mcp.json` in the repo root wires the agent to the Unreal Editor (Unreal MCP, HTTP) and Blender (Blender Lab server, stdio). Setup, limits and safety: `Docs/MCP_SETUP.md`.
+- **Build command:** `"<UE>/Engine/Build/BatchFiles/Build.bat" GodDomainEditor Win64 Development "<repo>/Game/GodDomain.uproject" -WaitMutex`. On this machine `<UE>` = `C:\Program Files\Epic Games\UE_5.8`.
 
 ## How to work
 
@@ -36,7 +39,7 @@ Read this file and `Docs/CODING_STANDARDS.md` and `Docs/ARCHITECTURE.md` at the 
 - **Avoid `Tick`** unless justified; prefer timers, delegates and events.
 - **Memory safety:** every `UObject*` member is a `UPROPERTY` (use `TObjectPtr<>`); use `TWeakObjectPtr` for non-owning references.
 - Follow Unreal naming: `A` actors, `U` objects/components, `F` structs, `E` enums, `I` interfaces, `T` templates, `b` prefix for bools.
-- Use project log categories (`LogGD`, `LogGDCombat`, etc.) instead of `UE_LOG(LogTemp, ...)`.
+- Use project log categories (`LogGodDomain`, `LogGodDomainCombat`, etc.) instead of `UE_LOG(LogTemp, ...)`.
 
 ## Definition of done for any task
 

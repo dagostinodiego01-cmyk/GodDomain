@@ -5,10 +5,11 @@ Read this file and `Docs/CODING_STANDARDS.md` and `Docs/ARCHITECTURE.md` at the 
 ## Project facts
 
 - **Project:** GD (working title), Unreal Engine 5 + C++, multiplayer-ready action RPG.
-- **Engine version:** Unreal Engine **5.8** (confirm the exact patch version here: `TODO 5.8.x`). API names differ between versions, so never assume.
-- **Primary module:** `GDomain` (class prefix `GD`, e.g. `AGDCharacter`).
-- **Platform / IDE:** `TODO: e.g. Windows + Visual Studio 2022`.
-- **Build command:** `TODO: e.g. "<UE>/Engine/Build/BatchFiles/Build.bat" GDomainEditor Win64 Development "<repo>/Game/GDomain.uproject"`.
+- **Engine version:** Unreal Engine **5.8.4** (2026-10-20 hotfix). Blender **5.3.0**. API names differ between versions, so never assume.
+- **Primary module:** `GodDomain` (project `Game/GodDomain.uproject`; class prefix `GodDomain`, e.g. `AGodDomainCharacter`).
+- **Project origin:** UE 5.8 **Third Person template**, kept deliberately as a starting point. `Source/GodDomain/Variant_*/` is template scaffolding — do not build game systems inside it.
+- **Platform / IDE:** Windows 64-bit + Visual Studio 2022.
+- **Build command:** `"<UE>/Engine/Build/BatchFiles/Build.bat" GodDomainEditor Win64 Development "<repo>/Game/GodDomain.uproject" -WaitMutex`. On this machine `<UE>` = `C:\Program Files\Epic Games\UE_5.8`.
 
 ## How to work
 
@@ -36,11 +37,11 @@ Read this file and `Docs/CODING_STANDARDS.md` and `Docs/ARCHITECTURE.md` at the 
 - **Avoid `Tick`** unless justified; prefer timers, delegates and events.
 - **Memory safety:** every `UObject*` member is a `UPROPERTY` (use `TObjectPtr<>`); use `TWeakObjectPtr` for non-owning references.
 - Follow Unreal naming: `A` actors, `U` objects/components, `F` structs, `E` enums, `I` interfaces, `T` templates, `b` prefix for bools.
-- Use project log categories (`LogGD`, `LogGDCombat`, etc.) instead of `UE_LOG(LogTemp, ...)`.
+- Use project log categories (`LogGodDomain`, `LogGodDomainCombat`, etc.) instead of `UE_LOG(LogTemp, ...)`.
 
 ## Working through MCP (Unreal Editor and Blender)
 
-Full setup is in `Docs/MCP_SETUP.md`. Rules for every session:
+Servers are declared in `.mcp.json` at the repo root (Unreal MCP over HTTP, Blender Lab server over stdio). Full setup is in `Docs/MCP_SETUP.md`. Rules for every session:
 
 1. **C++ is not written through MCP.** Edit source files and build normally. Use MCP for editor and content work (assets, levels, materials, data assets, imports).
 2. **Inspect before you change.** List/describe the target asset first, state what you intend to change, then change it.

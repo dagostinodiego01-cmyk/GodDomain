@@ -2,7 +2,9 @@
 
 Status: **Hybrid source-of-truth accepted** (see ADR-004). Other items remain *Proposed* in `DECISIONS.md`.
 
-Engine: **Unreal Engine 5.8**.
+Engine: **Unreal Engine 5.8.4**. DCC: **Blender 5.3.0**.
+
+Project file: `Game/GodDomain.uproject`, single runtime module `GodDomain`. Created from the UE 5.8 **Third Person template** (kept on purpose as a starting point); `Source/GodDomain/Variant_*` is scaffolding, not project code.
 
 ## Principles
 
@@ -13,13 +15,15 @@ Engine: **Unreal Engine 5.8**.
 
 ## Required plugins
 
-- Gameplay Abilities (GAS) — also add `GameplayAbilities`, `GameplayTags`, `GameplayTasks` to `GDomain.Build.cs`
+- Gameplay Abilities (GAS) — **wired**: plugin enabled in `Game/GodDomain.uproject`; `GameplayAbilities`, `GameplayTags`, `GameplayTasks` added to `GodDomain.Build.cs`
 - Enhanced Input
-- Unreal MCP (Epic, experimental in 5.8) plus the toolset plugin(s) it needs — **editor/dev only**, see `MCP_SETUP.md`
+- Unreal MCP (Epic, declared experimental in 5.8) plus **All Toolsets**, which supplies the toolsets — **editor/dev only**, see `MCP_SETUP.md`
 
 (Enable only what is needed. Record every addition in `DECISIONS.md`.)
 
-## Source layout (`Game/Source/GDomain/`)
+## Source layout (`Game/Source/GodDomain/`)
+
+None of these folders exist yet — create each one with the first system that needs it.
 
 ```
 Core/        game mode, game state, player state, controller, log categories

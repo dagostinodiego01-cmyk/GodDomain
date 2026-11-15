@@ -12,6 +12,7 @@ Build/*
 *.VC.db
 *.VC.opendb
 *.sln
+*.slnx
 *.suo
 *.opensdf
 *.sdf

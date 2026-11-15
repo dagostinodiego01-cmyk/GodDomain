@@ -2,9 +2,9 @@
 
 ## Naming
 - Types: `A` (Actor), `U` (UObject/component), `F` (struct), `E` (enum), `I` (interface), `T` (template).
-- Prefix all project types with `GD`: `AGDCharacter`, `UGDHealthAttributeSet`, `FGDClassRow`.
+- Prefix all project types with `GodDomain`: `AGodDomainCharacter`, `UGodDomainAttributeSet`, `FGodDomainClassRow`.
 - Booleans: `bIsAlive`. Functions: PascalCase verbs. Variables: PascalCase. Parameters/locals: PascalCase too (Unreal style).
-- Files match the type name without the prefix letter, e.g. `GDCharacter.h/.cpp`.
+- Files match the type name without the prefix letter, e.g. `GodDomainCharacter.h/.cpp`.
 - Asset prefixes: `BP_`, `SM_`, `SK_`, `M_`, `MI_`, `T_`, `WBP_`, `DT_`, `DA_`, `GA_` (gameplay ability), `GE_` (gameplay effect).
 
 ## Headers and includes
@@ -26,7 +26,7 @@
 ## Gameplay Ability System
 - Stats are `UAttributeSet`s; changes go through `GameplayEffect`s.
 - Use `FGameplayTag`s (defined in `Config/DefaultGameplayTags.ini`) instead of strings or enums for ability/state identity.
-- Abilities derive from a project base class `UGDGameplayAbility`.
+- Abilities derive from a project base class `UGodDomainGameplayAbility`.
 
 ## Performance
 - No `Tick` unless needed; set `PrimaryActorTick.bCanEverTick = false` by default.
@@ -34,8 +34,8 @@
 - No per-frame allocations or expensive searches (`GetAllActorsOfClass`) in hot paths.
 
 ## Logging
-- Declare categories (`DECLARE_LOG_CATEGORY_EXTERN(LogGD, Log, All)`) in `Core/`.
-- Use `UE_LOG(LogGD, Warning, TEXT("..."))`. No `LogTemp` in committed code.
+- Declare categories (`DECLARE_LOG_CATEGORY_EXTERN(LogGodDomain, Log, All)`) in `Core/`.
+- Use `UE_LOG(LogGodDomain, Warning, TEXT("..."))`. No `LogTemp` in committed code.
 
 ## Comments and docs
 - Comment **why**, not what. Public classes get a one-paragraph header comment.

@@ -41,6 +41,19 @@ See `DESIGN.md`.
 **Why:** free, already known to support MCP (used previously with another engine).
 **Fallback:** other MCP-capable agents. Keep nothing agent-specific in the repo except `AGENTS.md` and `MCP_SETUP.md`.
 
+### ADR-010 — MCP client config: first-party servers only, pinned versions — Proposed
+**Choice:** a single `.mcp.json` at the repo root declaring two servers — Epic's built-in **Unreal MCP** (HTTP, `http://127.0.0.1:8000/mcp`) with the **All Toolsets** plugin, and Blender's **Blender Lab** MCP server (stdio, launched with `uv` from a git clone). No third-party MCP plugin.
+**Why:** both are maintained by the vendors of the tools we depend on, which keeps version drift and supply-chain risk down and avoids marketplace plugins that lag engine releases.
+**Versions pinned:** Unreal Engine **5.8.4** (2026-10-20 hotfix), Blender **5.3.0** (2026-11-10). 5.9 is a Preview and not a baseline; upgrading is a deliberate decision, not a side effect of installing an agent tool.
+**Trade-off:** Unreal MCP is declared experimental and its toolsets are thinner than some community offerings; if a concrete gap appears, add one plugin at a time and record it here (per `MCP_SETUP.md`).
+**Risks:** broad agent control of editor and Blender content. Mitigated by loopback-only servers, dev-only plugins, checkpoint commits and the MCP rules in `Docs/AGENTS.md`.
+
+### ADR-011 — Module named `GodDomain`; Third Person template kept; GAS wired — Accepted
+**Module name:** the project was created as `GodDomain` (`GodDomain.uproject`, module `GodDomain`, targets `GodDomain` / `GodDomainEditor`), not `GDomain` as the early docs assumed. Docs now follow the project instead of renaming it: renaming a module later would break every include, `UCLASS` and `.uproject` reference for no functional gain. Class prefix is therefore `GodDomain` (`AGodDomainCharacter`), log categories `LogGodDomain*`.
+**Template:** the UE 5.8 **Third Person** template (with `Variant_Combat`, `Variant_Platforming`, `Variant_SideScrolling`) was kept deliberately as a faster start rather than recreating a blank project. Its code is scaffolding: game systems do not go inside `Variant_*`; new code goes in the folders in `ARCHITECTURE.md`. The variants may be pruned once the real character exists.
+**GAS wiring:** `GameplayAbilities` enabled in `Game/GodDomain.uproject`; `GameplayAbilities`, `GameplayTags`, `GameplayTasks` added to `GodDomain.Build.cs`. `GameplayTags`/`GameplayTasks` are engine runtime modules, not plugins, so they need no `.uproject` entry.
+**Why:** GAS is the project-wide framework (ADR-006) and must be available before the first attribute set is written, otherwise a parallel stat system appears by accident.
+
 ---
 
 ## Template
