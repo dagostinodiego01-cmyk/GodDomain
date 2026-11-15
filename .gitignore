@@ -1,0 +1,44 @@
+# ---- Unreal Engine 5 ----
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+Build/*
+!Build/Windows/
+!Build/Linux/
+.vs/
+.vscode/
+.idea/
+*.VC.db
+*.VC.opendb
+*.sln
+*.suo
+*.opensdf
+*.sdf
+*.xcodeproj
+*.xcworkspace
+*.code-workspace
+# Plugin build output
+Plugins/**/Binaries/
+Plugins/**/Intermediate/
+# Packaged builds
+Packaged/
+Archive/
+
+# ---- Blender ----
+*.blend1
+*.blend2
+*.blend@
+__pycache__/
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# ---- Secrets (never commit) ----
+.env
+*.key
+*.pem
+secrets.*
