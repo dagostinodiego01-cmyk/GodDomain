@@ -3,7 +3,7 @@
 Status: **Revision C, 2026-11-15 — freeze candidate, needs owner sign-off** (ADR-025).
 Companions: `ART_DIRECTION.md` (the look), `ART_PIPELINE.md` (the kit), `DECISIONS.md` (ADR-013/014/015/016/021, superseded where noted).
 
-This document owns **where things are and how big they are**. It does not own what they look like.
+This document owns **where things are and how big they are**. It does not own what they look like. It is the **governing document** for the city: where any other doc disagrees on layout, scale or counts, this one wins (and the other doc gets fixed). `LVL_StarterVillage_V3` is the current map built from it.
 
 **Sources of truth**
 
@@ -39,7 +39,7 @@ The script writes the drawing, prints the district/building summary, and exits n
 
 **Why the town is 300 × 200 and the map is bigger.** The owner's brief: *"the maps scale should be about 300x200 meters"*, then *"300x200 should be the town alone"*. So the **walled town is exactly 300 × 200 m**, and the map grows to 420 × 330 m to hold what a walled town needs and cannot contain: the river and its bridge, the slum suburb outside the south gate, the fields and mill to the west, and the ridge with the waterfall to the north-east. 60 m of ground beyond each wall face is enough for all four without the town shrinking to pay for them.
 
-**Consequence, stated plainly:** this is a bigger town than the revision-B plan (216 × 142 m) and much bigger than the greybox that exists today (`LVL_StarterVillage_V2`, a 400 m ring of scattered actors). The wall moves, the districts all move, the river moves, and the slums leave the walls entirely. `LVL_StarterVillage_V2` needs a **rebuild from this plan**, not a nudge. The old level is kept for comparison.
+**Consequence, stated plainly:** this is a bigger town than the revision-B plan (216 × 142 m) and much bigger than the old `LVL_StarterVillage_V2` greybox (a 400 m ring of scattered actors). The wall moves, the districts all move, the river moves, and the slums leave the walls entirely. V2 was therefore **rebuilt from this plan** as `LVL_StarterVillage_V3` (§13), the current map; the old level is kept for comparison.
 
 ---
 
@@ -74,10 +74,10 @@ The owner's aerial concept (save it as `Art/Reference/REF_CityOverview_Aerial_01
 | Dense red roofs everywhere, buildings touching | **Rows, not plots**: blocks are continuous frontages with no gaps wider than 1 m. 300 buildings fill the 300 × 200 m core. |
 | Wall with towers, gates fore and aft | **Curtain wall, 13 towers, 6 gates** (4 land, 1 postern, 1 library precinct gate), §4. |
 | River along the bottom, big arched bridge at the south gate | **River outside the south wall**, 16 m wide, 28 m three-arch bridge on the south axis. |
-| Stream and waterfall at the top right | **East stream** off the **ridge**, 20 m fall, single-arch bridge at the east gate. |
+| Stream and waterfall at the top right | **East stream** off the **ridge**, ~22 m fall, single-arch bridge at the east gate. |
 | Shanty roofs, bottom of the image | **The slums** are a suburb **outside** the south wall, on the flood plain, between the bridge and the main gate. |
 | Fields, mill, windmill, bottom left | **South-west fields** with the watermill on the river and the windmill on the knoll. |
-| Mountains and haze beyond the walls | Map edge closed by fields, the river and the ridge (+26 m). No fog in the streets. |
+| Mountains and haze beyond the walls | Map edge closed by fields, the river and the ridge (+22 / +30 m terraces). No fog in the streets. |
 
 Deliberate departures: the reference's streets wander; ours are a legible four-axis network plus lanes, because a town a player must navigate without a map needs a readable skeleton (ADR-015) — the lanes and the irregular block depths supply the medieval looseness.
 
@@ -225,14 +225,14 @@ Cathedral detail that the plan fixes (the look is `ART_DIRECTION.md`): a **38 m 
 | River water | **−4.5** | Bed −5.5; 16 m channel; banks slope from −3.0 at the wall foot |
 | Stream water | **−1.0** | 10 m cut outside the east wall, x ≈ 169, bed −2.0. §9's +2.0 assumed a carved landscape; the blockout town is one plane at 0, so the stream sits in a cut until phase E gives it a channel profile |
 | Waterfall pool | **−1.0** | At `(168, 86)`, r 9 m; the fall drops from the ridge terrace at +22 |
-| Ridge | **+22 / +30** | Two built terraces 72 x 82 m and 60 x 50 m; the fall cuts their south face at X ≈ 168 |
+| Ridge | **+22 / +30** | Two built terraces 64 × 70 m and 52 × 42 m; the fall cuts their south face at X ≈ 168 |
 | Bridge decks | **+1.2** | Deck + parapet (−0.8…+1.2 m body, parapets to +2.4) with three 0.4 m steps up each bank |
 | Fields | **−1.5** to −0.5 | Gentle, no walkable cliffs |
 | Map edge | — | Invisible wall + kill volume at ±210 / ±165; hills and water beyond |
 
 - **River**: 16 m channel, centreline `(-210,-150) → (-120,-142) → (0,-138) → (120,-150) → (210,-156)`. It runs **outside** the south wall, 38 m from it at the closest, and the slums stand on its north bank. The only crossing is the South Bridge on the town's axis.
-- **Stream**: 8 m channel at X ≈ 168, from the fall `(168,92)` south to the river `(176,-154)`. The East Bridge carries the High Street over it 6 m outside the East Gate.
-- **Waterfall**: 20 m fall from the ridge (+26) into the pool (+6), 16 m wide, visible from the Ridge Gate and from the ridge path.
+- **Stream**: 8 m channel at X ≈ 168 (built in V3 as a 10 m cut, see the table above), from the fall `(168,92)` south to the river `(176,-154)`. The East Bridge carries the High Street over it 6 m outside the East Gate.
+- **Waterfall**: ~22 m fall from the low ridge terrace (+22) into the pool (−1.0), 16 m wide (X 160…176), visible from the Ridge Gate and from the ridge path.
 - **Mill**: on the north bank at `(-96,-128)`, wheel in the river, served by Mill Lane. The reason the lane exists.
 - **Navmesh** covers the walled town, both bridges, the approaches, the slum lane and the fields. The river, the stream below the fall, the pool and the ridge scree are excluded.
 
@@ -250,6 +250,7 @@ These are what make the plan produce the reference's look. They are rules for th
 | Storey height | 3.2 m (2.8 m in the slums) |
 | Block frontage | continuous; **no gap wider than 1 m** between buildings in a row |
 | Rear yards | 3–6 m behind the front row; a lane or a wall behind that |
+| Back alleys | **Owner decision 2026-11-16:** every district gets back alleys behind its rows (dark, run-down — see `ART_DIRECTION.md`). Not yet in the CSV: add them as `street` rows of class `alley` on the machine that holds `Data/Layout/city_layout.csv`, re-run the check, then rebuild V3 |
 | Jetty | upper storey overhangs 0.4 m on the street face, never on the sides |
 | Roof pitch | 50° domestic, 60° towers; ridge parallel to the street except on corner plots |
 | Chimney | one per building, offset from the ridge |
@@ -306,7 +307,7 @@ The loop this produces: spawn **60 m** south of the gate and 8 m short of the br
 
 | Phase | Contents | Size | Exit |
 |---|---|---|---|
-| **A — setout** | Rebuild the greybox from this CSV: ground cut for the river, wall, gates, 22 streets, square, **295 individual buildings** | L | The plan and the level agree: `LVL_StarterVillage_V3`, 494 blockout actors |
+| **A — setout** | Rebuild the greybox from this CSV: ground cut for the river, wall, gates, 22 streets, square, **300 individual buildings** | L | The plan and the level agree: `LVL_StarterVillage_V3`, 499 blockout actors |
 | **B — civic** | Cathedral (nave, transept, towers, flèche), parvis + steps, town hall + clock tower, cloister, canonry | L | V2 and V7 pass in greybox |
 | **C — east** | Auction rotunda, forecourt + walls + gate, strongroom, AQ rows, library + precinct | M | V4 and V6 pass |
 | **D — rows** | Trade 158, slums 61, auction 32, civic 35, library 14 | XL | V1, V3, V5 pass; coverage reads as a town |
@@ -316,7 +317,7 @@ The loop this produces: spawn **60 m** south of the gate and 8 m short of the br
 
 A–D are the layout becoming real. E–G are the art pass the roadmap already owns. Nothing in B–F may move a wall, a gate or an axis: those are frozen by this document, and moving one means re-running the check and re-approving the seven views.
 
-**Phase A state (2026-11-15).** `LVL_StarterVillage_V3` **is the project's game map**: `Game/Config/DefaultEngine.ini` sets both `GameDefaultMap` and `EditorStartupMap` to it (revert line is in the file's comment). Boot verified from project defaults — Play on V3 spawns the `BP_ThirdPersonCharacter` at the `PlayerStart` (0,-160) facing north, `AGodDomainGameMode` logs a clean match start, 494 greybox actors load, no errors in the log, and a 1.65 m sightline trace from the spawn runs 60 m through the south gate to the square without hitting anything (the control trace at x -20 hits the slum row at 16 m). **To reproduce: open the project and press Play** — V3 loads and you stand on the south bank, three steps below the bridge deck, looking through the gate.
+**Phase A state (2026-11-15).** `LVL_StarterVillage_V3` **is the project's game map**: `Game/Config/DefaultEngine.ini` sets both `GameDefaultMap` and `EditorStartupMap` to it (revert line is in the file's comment). Boot verified from project defaults — Play on V3 spawns the `BP_ThirdPersonCharacter` at the `PlayerStart` (0,-160) facing north, `AGodDomainGameMode` logs a clean match start, 499 greybox actors load, no errors in the log, and a 1.65 m sightline trace from the spawn runs 60 m through the south gate to the square without hitting anything (the control trace at x -20 hits the slum row at 16 m). **To reproduce: open the project and press Play** — V3 loads and you stand on the south bank, three steps below the bridge deck, looking through the gate.
 
 ![Arrival at the south gate](Layout/Level_Arrival_V3.png)
 
@@ -327,7 +328,7 @@ The setout is built to **read**, not only to measure. Four things changed after 
 - **Every block is an array of individual buildings**, not one box with its middle cut out: **300 of the 499 actors are single buildings** — one per `count` column of the CSV, in a regular row with a 40 cm party gap, heights 3.5–7 m in the slums and 9–16 m in trade. Each is named `<block>_<row><index>` (`SL-4_103` is the fourth plot of the second row of Slums block 4), so replacing one with a model touches nothing else, which was the point of splitting them.
 - **The river and the stream are real channels.** The ground is cut along the river's own centreline in 14 slices, with a bed 1 m under the water and the surface at −4.5 m; the stream runs in a 10 m cut outside the east wall from the pool to the river. Street pads are clipped at every crossing, so no road floats over a channel (a whole-route pad used to lid the river at ground level and hide the bridge completely).
 - **Both bridges are bridges**: deck at +1.2 m, three 0.4 m steps up each bank, parapets, two piers. From the south bank you climb onto it; from the water you see its openings.
-- **The ridge is two terraces** (+22, +30) with the 16 m waterfall on their south face and the pool at the foot — it was one unexplained 80 x 85 m slab.
+- **The ridge is two terraces** (+22, +30) with the 16 m-wide, ~22 m-tall waterfall on their south face and the pool at the foot — it was one unexplained 80 x 85 m slab.
 - **Colour, so the setout is legible**: eight material instances (ground, ridge, town, slum, stone, paving, water, landmark) on duplicated cube/cylinder/sphere meshes under `Content/StarterVillage/Greybox/{Materials,Meshes}`. One material per category, no textures — the art pass replaces them.
 
 `Tools/Editor/build_level_v3.py` generates all of it from the CSV through the editor's MCP server, in folders under `GD/Greybox`, and re-running it with `--clear` rebuilds idempotently. The template's 80 m floor and its brush were removed, and the PlayerStart moved to `(0,-160)` facing north. What is still approximate: the town is one flat plane, so the stream sits in a cut rather than the raised watercourse §9 describes, and the buildings are single boxes — no roofs, jetties or gables until M6-04.
@@ -346,7 +347,7 @@ The setout is built to **read**, not only to measure. Four things changed after 
 | Auction House | Ø**28.0** drum at (80, 40), 22 m drum + 14 m dome, forecourt gate at (70, 6) |
 | Ridge | +22 and +30 terraces, 64 × 70 and 52 × 42, 22 m fall sheet at x 160…176 |
 | Views | PlayerStart (0, −159): **59 m** to the gate wall, **195 m** to the cathedral parvis |
-| Block array | 33 blocks, **300 buildings**; slums 12 / 61, trade 16 / 158, civic 5 / 35, auction 3 / 32, library 1 / 14 — every count **exactly** the CSV's |
+| Block array | 37 blocks, **300 buildings**; slums 12 / 61, trade 16 / 158, civic 5 / 35, auction 3 / 32, library 1 / 14 — every count **exactly** the CSV's |
 | Block regularity | within a row every plot is identical to **1 cm**; party gap **0.40 m** throughout (min and max); built footprint **0.20 m** inside the plan edge (the half gap) |
 | Block placement | **0** blocks on a street corridor, **0** floating above z 0, and every frontage within **0.3 m** of the plan's own distance to its nearest street |
 | Block pitch (centres) | slums 14 m across, auction 79 m, trade 30–69 m; every centre on its plan block within 0.3 m |
@@ -368,7 +369,8 @@ Two things the measurements *cannot* deliver, recorded here so nobody re-litigat
 | **ADR-016** (massing variety) | Ranges **kept and extended** in §10; district extents superseded. |
 | **ADR-021** (ground kit) | **Kerb height closed at 12 cm** (45 cm stone, 1.5 m zone). |
 | **`ROADMAP.md` M6-01** | This document is the freeze candidate; M6-01 becomes "sign off revision C and rebuild the greybox". |
-| **`LVL_StarterVillage_V2`** | Does not match. Rebuild from the CSV (phase A); keep the old level for comparison. No binary asset was edited by this work. |
+| **`LVL_StarterVillage_V2`** | Does not match. **Rebuilt as `LVL_StarterVillage_V3`** (phase A, §13), which is the current map; V2 is kept for comparison only. |
+| **ADR-017** (village first, surroundings stripped) | **Superseded.** Revision C puts the river, bridges, stream, waterfall and ridge back in the plan, and V3 builds them. |
 
 ---
 
@@ -397,4 +399,4 @@ What the check does **not** cover: sightlines, navmesh reachability, terrain slo
 
 **Open:** none blocking. Two things to decide at sign-off: whether the slum suburb wants a wooden bridge of its own to the west fields (it currently has one road out), and whether the windmill stays as an anchor-only landmark or gets a footprint in phase E.
 
-**Handover I could not do:** the concept image needs saving as `Art/Reference/REF_CityOverview_Aerial_01.png`; the level rebuild is an editor task (`LVL_StarterVillage_V2.umap` is binary and untouched).
+**Handover I could not do:** the concept image needs saving as `Art/Reference/REF_CityOverview_Aerial_01.png`; the level rebuild was done as `LVL_StarterVillage_V3` (§13); `LVL_StarterVillage_V2.umap` is untouched.

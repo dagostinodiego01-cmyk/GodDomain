@@ -38,7 +38,7 @@ Everything snaps to a 10 cm grid, and building elements use fixed module sizes s
 | Window opening | 90 × 140 cm | Small and deep-set by design |
 | Tile course | 26 cm | Matches `T_Roof_Tile` at 8 courses per 2 m |
 | Cobble stone | 20–25 cm | Matches `T_Cobble` at 9 cells per 2 m |
-| Kerb | 150 cm wide × 40 cm high | Matches ADR-015 street carving |
+| Kerb | 45 cm wide × 12 cm high, 1.5 m kerb zone | Owner decision, `CITY_LAYOUT.md` §6 (closes ADR-021) |
 | Step rise / tread | 17 / 30 cm | Seven-step flights per ADR-013 |
 
 ## 3. Kit inventory and order of work
@@ -56,7 +56,7 @@ Build in this order; each phase is usable on its own and each maps to a level al
 
 Rule: **no new kit piece until the previous phase is imported and lit in UE.** A kit that looks right in Blender's viewport and wrong on the plaza is a lighting-story problem, and it is cheapest to find out early.
 
-**Scope note (ADR-017):** the river, terraces, hills and trees are stripped from the level until the village is signed off, so **P4 landscape stays deferred** behind P1–P3. Foliage that is part of the village itself — window boxes, planters, ivy on walls, leaves on cobble — still belongs to P2 and P5.
+**Scope note:** ADR-017's deferral is superseded by `CITY_LAYOUT.md` revision C — `LVL_StarterVillage_V3` already has the river, bridges, stream, waterfall and ridge in greybox. **P4 landscape** still comes after P1–P3 by the order rule above, but it is no longer deferred. Foliage that is part of the village itself — window boxes, planters, ivy on walls, leaves on cobble — belongs to P2 and P5.
 
 ## 4. Textures
 
@@ -106,7 +106,7 @@ Art/Exports/Textures/<T_*>/      ← generated sheets (gitignored — regenerate
 
 1. Edit `palette.json` or the generator if the look is wrong; re-run; check `preview_materials.png`.
 2. Build or adjust one kit piece in Blender.
-3. Export, import, place it against real neighbours at player height in `LVL_StarterVillage_V2`.
+3. Export, import, place it against real neighbours at player height in `LVL_StarterVillage_V3`.
 4. Compare against `Art/Reference/REF_StarterVillage_MarketSquare_01.png` from the same camera height.
 5. Keep it or revert — but do not "improve it later". Unverified pieces accumulate.
 

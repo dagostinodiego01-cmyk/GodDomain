@@ -2,7 +2,7 @@
 
 Status: **Proposed** — needs the owner's sign-off (ADR-019).
 Reference: owner-supplied concept image, 2026-11-15. Save it as `Art/Reference/REF_StarterVillage_MarketSquare_01.png` so every later judgement can be compared against it.
-Related: ADR-014 (five districts), ADR-015 (streets and ground), ADR-016 (massing variety), `ART_PIPELINE.md`.
+Related: `CITY_LAYOUT.md` (governing layout — districts, landmarks, heights), ADR-014 (five districts), ADR-015 (streets and ground), ADR-016 (massing variety), `ART_PIPELINE.md`.
 
 ## The look in one sentence
 
@@ -78,23 +78,25 @@ Rules that keep it cheap:
 | Eaves | Overhang 40 cm with visible rafters | Dark line under every roof edge — reads as depth |
 | Windows | Small, deep-set, leaded, irregular spacing; shutters on domestic | The reference's windows are glass slits, not glass walls |
 | Chimneys | One per building, offset, stone or plastered stack | Vertical accents between the gables |
-| Doorways | 100×210 cm, arched on civic, squared with timber lintel on domestic | Cheap variety from one opening kit |
-| Gothic detail | Pointed arches, buttresses, pinnacles and one rose window — cathedral only | Landmark language stays exclusive to the landmark |
+| Doorways | 100×210 cm, **round-arched** on civic, library and gates, squared with timber lintel on domestic | Cheap variety from one opening kit |
+| Gothic detail | Pointed arches, buttresses, pinnacles and one rose window — cathedral only. Every other arch in town is round (owner decision 2026-11-16) | Landmark language stays exclusive to the landmark |
 
 ## District material sets
 
-The districts in ADR-014 must be readable **before** materials (silhouette first). Materials then reinforce them:
+The districts in `CITY_LAYOUT.md` §5 must be readable **before** materials (silhouette first). Materials then reinforce them:
 
 | District | Plaster | Roof | Timber | Signature props |
 |---|---|---|---|---|
-| **Town Hall** | Cream, clean | Old tile, steep | Oak, carved brackets | Banners, lamps, ceremonial steps, glass |
+| **Civic — Town Hall** | Cream, clean | Old tile, steep | Oak, carved brackets | Banners, lamps, ceremonial steps, glass |
 | **Trade District** | Warm ochre, mixed | Clay tile, mixed ages | Oak, some painted | Awnings, signboards, barrels, crates, hand cart |
 | **Auction House** | Cream + dressed stone | Dome (metal/lead) | Dark oak | The only metalwork in town: railings, lanterns, strongbox |
 | **The Slums** | Patchy cream over older warm, stained | Patched, mismatched, one repaired with planks | Smoked, unpainted | Lean-tos, laundry, scavenged boards, no awnings |
 | **Library** | Cream + stone plinth | Old dark tile | Dark oak | Buttresses, tall windows, quiet courtyard |
-| **Parish church** | Dressed stone | Old tile | — | Rose window, pinnacles, spire, bell |
+| **Civic — Cathedral & cloister** | Dressed stone | Old tile | — | Rose window, pinnacles, flèche, bell; cloister in the same stone |
 
-Contrast is the point: the slums are the only district where materials are *worn* rather than merely old, and the auction house the only one with polished metal.
+Contrast is the point: the slums are the only district whose *front* materials are worn rather than merely old, and the auction house the only one with polished metal.
+
+**Back alleys (owner decision 2026-11-16).** Every district has back alleys behind its rows, and they are dark and run-down: smoked timber, stained and patched plaster, ragged setts with standing water, refuse, few or no lanterns, deep shadow under the jetties. They are the one place outside the slums where worn materials belong. Front streets stay warm and kept, so turning into an alley is a visible drop in light and care.
 
 ## Light and atmosphere
 

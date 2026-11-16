@@ -35,6 +35,7 @@ World/       interactables, zones, spawners, village systems
 Economy/     items, inventory, currency, vendors, crafting (later)
 UI/          HUD, widgets (view code only, no game rules)
 Data/        row structs and data asset types
+Tests/       automation tests (`GodDomain.*`), compiled only WITH_DEV_AUTOMATION_TESTS
 ```
 
 ## Source of truth (hybrid)

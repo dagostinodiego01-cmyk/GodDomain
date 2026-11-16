@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GD / Starter city art review</title>
+  <style>
+    :root {
+      --paper: #e2d5bc;
+      --ink: #2e2319;
+      --oak: #4b3626;
+      --muted: #cfc0a4;
+      --accent: #f2b45e;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--ink);
+      color: var(--paper);
+      font: 16px/1.6 Georgia, serif;
+    }
+
+    header, nav, main, footer {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    header { padding-top: 64px; }
+
+    h1 {
+      margin: 16px 0;
+      font-weight: normal;
+      font-size: clamp(32px, 5vw, 66px);
+      line-height: 1.1;
+    }
+
+    h2 {
+      margin: 72px 0 0;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--oak);
+      font-weight: normal;
+      font-size: 34px;
+    }
+
+    h3 {
+      margin: 0 0 4px;
+      font-weight: normal;
+      font-size: 24px;
+    }
+
+    p { max-width: 900px; }
+
+    a {
+      color: var(--accent);
+      text-underline-offset: 5px;
+    }
+
+    .eyebrow, nav {
+      font: 12px/1.7 "Segoe UI", sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: grid;
+      gap: 8px;
+      margin-top: 32px;
+      padding-top: 22px;
+      padding-bottom: 22px;
+      border-block: 1px solid var(--oak);
+    }
+
+    nav div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 20px;
+    }
+
+    nav span {
+      width: 120px;
+      color: var(--muted);
+    }
+
+    figure { margin: 48px 0; }
+
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: var(--paper);
+    }
+
+    figcaption {
+      padding: 16px 0;
+      color: var(--muted);
+    }
+
+    figcaption p { margin: 0; }
+
+    footer {
+      margin-top: 72px;
+      padding-top: 16px;
+      padding-bottom: 48px;
+      border-top: 1px solid var(--oak);
+    }
+
+    @media print {
+      body { background: var(--paper); color: var(--ink); }
+      nav { display: none; }
+      figure { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="eyebrow">GD (working title) · Art review · 16 November 2026</div>
+    <h1>Warm roofs.<br>Pale stone. One spire.</h1>
+    <p>A grounded, painterly late-medieval city in high autumn. Dense oak-framed frontages below one Gothic landmark; an inhabited floodplain before the gate, a quiet library close, a controlled auction court, and dark back alleys behind every row.</p>
+    <p><strong>Status:</strong> all nine sheets are painterly concept studies in one shared style. Composed views say on the sheet where they bend camera height or depth for readability.</p>
+    <p><strong>Concept only.</strong> No engine or Blender assets changed. Labels are functional, not lore. <code>Docs/CITY_LAYOUT.md</code> governs the setout; V3 is the current map. Production questions are in the <a href="CITY_ART_STYLE.md">art bible</a>.</p>
+  </header>
+
+  <nav aria-label="Sheets">
+    <div><span>Overview</span>
+      <a href="#city-overview">Whole city</a>
+      <a href="#gate-approach">Gate approach</a>
+    </div>
+    <div><span>Districts</span>
+      <a href="#district-civic">Cathedral &amp; Town Hall</a>
+      <a href="#district-trade">Trade District</a>
+      <a href="#district-auction">Auction House</a>
+      <a href="#district-slums">The Slums</a>
+      <a href="#district-library">Library</a>
+    </div>
+    <div><span>Production</span>
+      <a href="#buildings">Building catalogue</a>
+      <a href="#kit">Modular kit</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <section aria-labelledby="overview-heading">
+      <h2 id="overview-heading">Overview</h2>
+
+      <figure id="city-overview">
+        <img src="city_overview.svg" alt="Aerial view of the whole walled city" loading="lazy">
+        <figcaption>
+          <h3>01 / Whole city</h3>
+          <p>The walled town on Revision C: 37 blocks and 300 street buildings, slums outside the south wall, river and bridges, and the ridge with its waterfall. <a href="city_overview.svg" target="_blank">Open full size</a></p>
+        </figcaption>
+      </figure>
+
+      <figure id="gate-approach">
+        <img src="skyline_gate_approach.svg" alt="Arrival view from the South Bridge toward the south gate" loading="lazy">
+        <figcaption>
+          <h3>02 / Gate approach</h3>
+          <p>Composed V1 view from the South Bridge deck; depth beyond the wall is compressed so the landmark tops read, with the river beneath the deck. <a href="skyline_gate_approach.svg" target="_blank">Open full size</a></p>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section aria-labelledby="districts-heading">
+      <h2 id="districts-heading">Districts</h2>
+
+      <figure id="district-civic">
+        <img src="district_civic.svg" alt="Cathedral and Town Hall across the square" loading="lazy">
+        <figcaption>
+          <h3>03 / Cathedral &amp; Town Hall</h3>
+          <p>The height ladder is civic power, not a second competing spire. <a href="district_civic.svg" target="_blank">Open full size</a></p>
+        </figcaption>
+      </figure>
+
+      <figure id="district-trade">
+        <img src="district_trade.svg" alt="Trade District High Street" loading="lazy">
+        <figcaption>
+          <h3>04 / Trade District</h3>
+          <p>Deep awnings, jetties and sign silhouettes turn a long street into a busy room; a back alley drops away to the right. <a href="district_trade.svg" target="_blank">Open full size</a></p>
+        </figcaption>
+      </figure>
+
+      <figure id="district-auction">
+        <img src="district_auction_house.svg" alt="Auction House rotunda through the Forecourt Gate" loading="lazy">
+        <figcaption>
+          <h3>05 / Auction House</h3>
+          <p>A quiet, gated forecourt frames the only broad metal dome. <a href="district_auction_house.svg" target="_blank">Open full size</a></p>
+        </figcaption>
+      </figure>
+
+      <figure id="district-slums">
+        <img src="district_the_slums.svg" alt="Slum lane outside the south wall" loading="lazy">
+        <figcaption>
+          <h3>06 / The Slums</h3>
+          <p>Low patched roofs under the wall: laundry, repair and an inhabited lane, with back alleys dropping into shadow. <a href="district_the_slums.svg" target="_blank">Open full size</a></p>
+        </figcaption>
+      </figure>
+
+      <figure id="district-library">
+        <img src="district_library.svg" alt="Library close with buttressed nave and tower" loading="lazy">
+        <figcaption>
+          <h3>07 / Library</h3>
+          <p>A walled, buttressed close; round-headed windows keep Gothic detail exclusive to the cathedral. <a href="district_library.svg" target="_blank">Open full size</a></p>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section aria-labelledby="production-heading">
+      <h2 id="production-heading">Production sheets</h2>
+
+      <figure id="buildings">
+        <img src="buildings_sheet.svg" alt="Building catalogue elevations" loading="lazy">
+        <figcaption>
+          <h3>08 / Building catalogue</h3>
+          <p>36 functional types as front elevations at labelled scale, each with a 180 cm figure and a 200 cm bay tick, plus a back-alley strip and the height ladder. <a href="buildings_sheet.svg" target="_blank">Open full size</a></p>
+        </figcaption>
+      </figure>
+
+      <figure id="kit">
+        <img src="kit_pieces_sheet.svg" alt="Modular kit pieces" loading="lazy">
+        <figcaption>
+          <h3>09 / Modular kit</h3>
+          <p>50 kit pieces with envelopes in centimetres and G units, plus worn back-alley variants, composite props, decals and landscape pieces. <a href="kit_pieces_sheet.svg" target="_blank">Open full size</a></p>
+        </figcaption>
+      </figure>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Read the <a href="CITY_ART_STYLE.md">art bible</a> before modelling. Palette: <code>Tools/Blender/palette.json</code>. These sheets do not replace the V1–V7 Editor captures or frame-time measurement.</p>
+  </footer>
+
+</body>
+</html>

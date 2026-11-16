@@ -4,7 +4,7 @@
 
 A fantasy **action RPG** being built solo (with possible help from a family member), with the long-term ambition of growing into a persistent online world featuring class progression, trade, commerce and city building.
 
-**Status:** Pre-production. No playable build yet.
+**Status:** Pre-production. Greybox starter city (`LVL_StarterVillage_V3`) playable as a walk-through; combat not yet playable.
 
 ---
 
@@ -16,12 +16,12 @@ Start small: a single **starter village** with one playable class, a combat syst
 
 | Area | Choice |
 |---|---|
-| Engine | Unreal Engine 5 (exact version recorded in `AGENTS.md`) |
+| Engine | Unreal Engine 5.8.4 (see `AGENTS.md`) |
 | Gameplay code | C++ (Blueprints only as thin wrappers) |
 | Ability / stat framework | Gameplay Ability System (GAS) |
-| 3D modelling and rigging | Blender |
+| 3D modelling and rigging | Blender 5.3.0 |
 | Version control | Git + Git LFS |
-| Coding assistant | AI coding agent (Freebuff / others). Rules in `AGENTS.md` |
+| Coding assistant | MCP-capable AI coding agents. Rules in `AGENTS.md` |
 
 ## Repository layout
 
@@ -33,9 +33,13 @@ Start small: a single **starter village** with one playable class, a combat syst
 │   ├── ARCHITECTURE.md  ← how the systems fit together
 │   ├── CODING_STANDARDS.md
 │   ├── DESIGN.md        ← pillars, scope, IP rules, open questions
+│   ├── CITY_LAYOUT.md   ← governing city plan: wall, gates, districts, landmarks
+│   ├── Layout/          ← plan drawing, level-vs-plan audit, V3 captures
 │   ├── ART_DIRECTION.md ← the village look: palette, materials, districts
 │   ├── ART_PIPELINE.md  ← Blender kit grid, textures, export/import
+│   ├── MCP_SETUP.md     ← Unreal + Blender MCP setup
 │   ├── ROADMAP.md       ← milestones and exit criteria
+│   ├── TASK_CARDS.md    ← step-by-step cards for cheap-model agents
 │   └── DECISIONS.md     ← log of technical decisions
 ├── Game/                ← the Unreal Engine project (.uproject lives here)
 ├── Art/
@@ -48,18 +52,17 @@ Start small: a single **starter village** with one playable class, a combat syst
 
 ## Prerequisites
 
-- Unreal Engine 5 via the Epic Games Launcher
+- Unreal Engine **5.8.4** via the Epic Games Launcher
 - Visual Studio 2022 with the **"Game development with C++"** workload (Windows)
-- Blender (current stable release)
+- Blender **5.3.0**
 - Git and **Git LFS** (`git lfs install` once per machine)
 
 ## First-time setup
 
-1. Clone the repo and run `git lfs install`.
-2. Create the Unreal C++ project inside `Game/` as described in `Game/README.md`.
-3. Enable the plugins listed in `Docs/ARCHITECTURE.md` (Gameplay Abilities, Enhanced Input).
-4. Generate Visual Studio project files (right-click the `.uproject`) and build the `Development Editor` target.
-5. Commit the empty project as the first commit **before** adding any gameplay code.
+1. Clone the repo, run `git lfs install`, then `git lfs pull` (maps and assets are LFS objects).
+2. Right-click `Game/GodDomain.uproject` → *Generate Visual Studio project files* (see `Game/README.md`).
+3. Build the `Development Editor` target (command in `AGENTS.md`) and open the project. `LVL_StarterVillage_V3` is the startup map.
+4. Optional: generate the base material sheets with `python Tools/Blender/generate_textures.py`.
 
 ## Day-to-day workflow
 

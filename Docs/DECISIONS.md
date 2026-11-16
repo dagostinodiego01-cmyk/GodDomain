@@ -60,7 +60,8 @@ See `DESIGN.md`.
 **Conventions set:** level assets use the `LVL_` prefix; greybox actors live under `Greybox/*` outliner folders.
 **Method note:** `execute_tool_script` runs sandboxed Python that can only call registered MCP tools (no `unreal` module access) — batched structured tools, not raw editor scripting. In tool-search mode every real tool goes through `call_tool` with `toolset_name` + bare `tool_name`. Actor `refPath`s carry internal `UAID` names, not labels — relocate actors by label via `find_actors`, never by parsing refs.
 
-### ADR-013 — Starter town v2: river town on terraces — Accepted
+### ADR-013 — Starter town v2: river town on terraces — Superseded
+**Superseded by `CITY_LAYOUT.md` revision C (ADR-025):** one river outside the south wall, a stream outside the east wall, a flat town inside; built as `LVL_StarterVillage_V3`. Kept below as history.
 **What:** `Game/Content/StarterVillage/LVL_StarterVillage_V2.umap`, built after the owner supplied a concept reference. `LVL_StarterVillage` (ADR-012) is left untouched for comparison.
 **Structure:** 140 m-wide river corridor dropping 8.5 m below the quay top; six terraces on both banks (E 2.5 / 6 / 10 / 15 m, W 3 / 9 m); stone quays; three stair flights of seven steps; two arched bridges with 15 m piers; 106 houses packed at 19–33 m spacing in three bands around a clock tower and a buttressed church; four docks, four boats, 48 trees, plaza with fountain, PlayerStart on the plaza. 192 actors, eight `Greybox/*` folders, saved and visually verified from a pose-specified viewport capture.
 **Why the rebuild:** the first blockout was a crossroads on a flat slab — the reference is a river town on a slope. The decisive variable turned out to be **density**: houses at 80–90 m spacing read as scattered farms at any camera distance; the same buildings at 19–33 m read as a town. Building count matters far less than spacing.
@@ -68,7 +69,8 @@ See `DESIGN.md`.
 
 **Folder convention, revised:** in a level that is *entirely* greybox, the `Greybox/` prefix is redundant. `LVL_StarterVillage_V2` therefore groups by district at the root (`Town/District_*`, `Town/Streets`, `Terrain`, `Water`, `Wilds`, `Gameplay`). Keep the `Greybox/` prefix for any level that mixes final art with blockout.
 
-### ADR-014 — Five districts with distinct character — Accepted
+### ADR-014 — Five districts with distinct character — Accepted (extents superseded)
+**Partly superseded by `CITY_LAYOUT.md` revision C:** the five districts and their character stand; positions, extents and heights are now in `CITY_LAYOUT.md` §5, the cathedral (not the town hall) is the tallest silhouette, and the parish church below is merged into the cathedral precinct as the cloister — the town has one spire.
 **What:** the town inside `LVL_StarterVillage_V2` is a walled ring (200 m radius, 20 segments, four gate towers) around a central plaza, divided into five districts that must read as different places from a distance and at street level.
 
 | District | Position | Character | Greybox signature |
@@ -88,7 +90,8 @@ See `DESIGN.md`.
 - District identity must survive the art pass. Slum materials stay patched and unpainted; Town Hall gets dressed stone and glass; the Auction House may be the only building with metalwork.
 - Names: neutral functional district names only (Town Hall, Trade District, Auction House, The Slums, Library). No proper names until `Docs/DESIGN.md` locks them, and never the inspiring novel's names.
 
-### ADR-015 — Streets and ground profile — Accepted
+### ADR-015 — Streets and ground profile — Accepted (network and ground profile superseded)
+**Partly superseded by `CITY_LAYOUT.md` revision C:** the street hierarchy and carved-road logic stand; the network is `CITY_LAYOUT.md` §6, the terrace profile is dropped (§9, the town is flat at z 0), and the kerb is **45 cm × 12 cm** with a 1.5 m zone, not the 150 cm kerbs below.
 **Street hierarchy:** four tree-and-flagstone axes from the gates to the plaza, plus a ring road just inside the wall and short approaches outside each gate. The roads are **carved, not painted**: each is a 40 cm slab faced by 150 cm kerbs, because a flat slab in one material is invisible in greybox and reads as ground clutter. Deletions were required to open them — the trade high street runs through where four shops stood, the south spine through a rank of hovels, the north approach through two houses. Those gaps are the street, not a mistake.
 - **North axis** — plaza → Town Hall steps → north gate. This is the ceremonial approach; it must stay the widest clear sightline to the clock tower.
 - **West axis** — plaza → west gate, the high street of the Trade District. Shops front it on both sides.
@@ -118,7 +121,8 @@ See `DESIGN.md`.
 
 ---
 
-### ADR-017 — Village first: surroundings stripped until the town is signed off — Accepted
+### ADR-017 — Village first: surroundings stripped until the town is signed off — Superseded
+**Superseded by `CITY_LAYOUT.md` revision C (ADR-025):** the river, bridges, stream, waterfall and ridge are back in the plan and built in `LVL_StarterVillage_V3`. Kept below as history.
 **Decision (owner):** stop spending effort on the river, terraces, slopes, hill, bridges, docks, boats and trees. The trees, water and surrounding terrain have been removed from `LVL_StarterVillage_V2`. The village itself is the only subject until it is good.
 **Consequences:**
 - ADR-013 (river town on terraces) and the ground-profile half of ADR-015 are **deferred, not cancelled** — the design for the river remains recorded there for when the village is signed off.
